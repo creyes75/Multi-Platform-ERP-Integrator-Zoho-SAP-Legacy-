@@ -1,0 +1,89 @@
+Credenciales de Ingreso a la Consola anydesk
+	IP: 486754232/central/develsap anydesk de srv sap pruebas
+	Contraseña: 13torres18
+
+Credenciales de Acceso al SAP de la Empresa CIATEITE 
+	SAP EMPRESA: CIATEITE_CAP
+	Usuario:  manager
+	Clave: 1234 
+Usuaario Windows
+	develsap 
+	d3v3l$@P
+
+
+
+
+
+
+langara
+collegue
+actuacion
+
+
+Dobra - creado a la medida
+Sojo CRM(gestion comercial) - software libre
+
+
+31-marzo-2022
+Luis alberto / Fernando
+Moroni Salazar
+Wagner
+
+Se debe hacer un  solo aplicacitvo para todos o uno para cada interconexion y luego eso es llamada en secuencia desde el sistema origen
+
+como se controlara la ejecucion ciclica, es decir si SAP actualiza ZOHO, este va a volver a acctivar la transaccion de actualizacion a SAP, 
+
+6/abril/2022
+wagner Mildware
+Luis Soho
+
+DOBRA- Logistico
+SAP  - financiero
+ZOHO - CRM
+
+RFC
+mildware (bus transaccional).
+
+
+11/abril/2022
+
+NAturaleza del producto
+Zona Ciudad
+Zona Ecuapas
+Nivel
+clase
+categoria
+tipo cliente
+Servicios del grupo
+Tipo captacion
+
+
+13/abril/2022
+Jorge portalanza PM
+equipo tecnico Viamatica
+Angelo cAyetano
+Guillermo Acuna
+
+un solo api clientes q genere a ambos de BD(SAP Y DOBRA)
+
+Enviar caracteristicas de en q plataforma se trabajara
+
+18/abril/2022
+	crear una clase q registre log de ejecucion.
+	y luego alimente las tablas de log de ejecucion
+	
+
+2/may/2022
+	SAP idenitficador incremental, como controlar la secuencia de SOHO y SAP(la secuencia de uno no necesariamente puede ser el mismo del otro sistema.
+	Como se realiza el insert de ese incremental.
+	
+	Si un campo obligatorio esta vacio debe ser validado y .
+	
+	validar q PB Comentarios se pueda cargar desde Diapi
+4/may/2022
+		no esta validado el ruc en dobra, se puede ingresar duplicado o sin validacion de dig verificador
+		La replicacion es solo de SAP y se envia a Dobra.
+		ya existe el prceso de replicacion entre sobra y sap sugiere utilizar uno
+		manejar ciertos campos de manera interna.
+9/may/2022
+		si encuentra al cliente inactivo lo actve y actualice y si no se encientra se crea como nuevo.

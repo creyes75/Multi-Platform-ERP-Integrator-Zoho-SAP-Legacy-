@@ -1,0 +1,22 @@
+ 13 Abril de 2022
+
+Reunion con Wagner Mendoza
+ 
+ Equipo tecnico de desarrollo Viamatica
+	Angelo cAyetano
+	Guillermo Acuna
+	
+Temas tratados y acuerdos
+	Definicion de los apis a ser creados
+		Se acuerda para los APIs de clientes crear 4 apis
+		1.- creacion y modificacion de clientes desde ZOHO hacia SAP y DOBRA. En el mismo API se idenitifcara si el cliente existe o no para crearlo o modificarlo, asi tambien el mismo API afectara a ambos sistemas (SAP y DOBRA)
+		2.-Modificacion de clientes desde SAP hacia ZOHO
+		3.-Modificacion de clientes desde DOBRA hacia ZOHO
+		4.-Consulta de cientes origen de informacion ZOHO. Puede ser consultado desde cualquier fuente de informacion. Como se debe interpretar el origen y destino de la informacion segun indica el archivo EXCEL: "(INVENTARIO DE SERVICIOS DE INTEGRCION REV REUNION(version1).xlsb"
+	
+	Queda pendiente definir como se iniciara el flujo de la informacion de Clientes, es decir si la llamada a los APIS desde el MW sera realizada directamente de ZOHO o exisitra un proceso que se encuentre permanentemente buscando cambios en las bases de datos y ejecute el llamado a las APIs.
+	
+	Se debe establecer el detalle de los campos a ser utilizados para transferir informacion entre los sistemas, se cuenta con un detalle proporcionado por el cliente, pero se requiere identificar el origen y equivalencia de los mismos en los otros sistemas. Asi como tambien los posibles valores que se incluiran en esos campos.
+	
+	Por ahora y hasta tener identificado un documento de especificaciones formal y claro, se iniciara con el desarrollo de un API basico con la estructura basica de clientes(Id, nombre y direccion).
+	

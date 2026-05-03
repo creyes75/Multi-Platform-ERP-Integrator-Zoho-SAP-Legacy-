@@ -1,0 +1,32 @@
+{
+        "Empresa" :"TYT",
+        "Codigo" :"0",
+        "Nombre" :"Carlos",
+        "Moneda": "USD",
+        "RUT": "0916566797",        
+        "Telefono":"0916566797",
+        "Correo":"creyes75@hotmail.com",
+        "CondicionPago": "146",
+        "ListaPrecios": 1,
+        "Propiedades1":"YES",
+        "Propiedades2": "NO"
+        "Propiedades3": "YES",
+        "Propiedades4":"NO",
+        "Comentario":"N/A",
+
+        "TipoProveedor": "BIEN",
+        "TipoRuc": "N",
+        "TipoId": "C",
+        "TipoContribuyente": "N",
+        "TipoSN":"01",
+
+        "BPAddresses": [
+		{
+        "AddressName": "PRINCIPAL",
+        "Street": "KENNEDY NORTE",
+        "City": "GUAYAQUIL",
+        "Country": "EC"
+		}
+		]
+    
+    }

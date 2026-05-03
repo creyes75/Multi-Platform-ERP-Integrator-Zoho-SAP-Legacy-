@@ -1,0 +1,123 @@
+{
+        "CardCode": "0916566797",
+        "CardName": "CARLOS A REYES A" ,
+        "CardType": "C",
+        "Currency": "USD",
+        "Phone1":"0999617882", 
+        "EmailAddress": "creyes.atiencia@gmail.com" ,
+        "FederalTaxID":"0916566797", 
+        "Properties1": "tNO",
+        "Properties2": "tNO",
+        "Properties3": "tYES",
+        "Properties4": "tNO",
+        "PayTermsGrpCode": 5, 
+        "PriceListNum" : 2,
+        "FreeText":"PRB DIAPI 2"
+
+ }
+ 
+ 
+ {"BPAddresses": [{"AddressName": "ENVIO",
+		"RowNum": 1,
+	    "BPCode": "C0916566797",
+            "Street": "KENNEDY NORTE MZ 808 Sl 2",
+            "City": "GUAYAQUIL"}]}
+			
+			
+ probar la busqueda de un BP y de la direccion del BP. 
+ 
+ SERVIDOR T&T
+ 192.168.0.211
+ https://192.168.0.211:50000/b1s/v1/Login
+ {"CompanyDB":"SBOCIATEITE_CAP","UserName":"manager","Password":"1234"}
+ 
+ https://192.168.0.211:50000/b1s/v1/BusinessPartners
+ {
+        "Series":"86",
+        "CardName": "CARLOS A REYES A" ,
+        "CardType": "C",
+        "Currency": "USD",
+        "Phone1":"0999617882", 
+        "EmailAddress": "creyes.atiencia@gmail.com" ,
+        "FederalTaxID":"0916566797", 
+        "Properties1": "tYES",
+        "Properties2": "tNO",
+        "Properties3": "tYES",
+        "Properties4": "tNO",
+        "PayTermsGrpCode": 146, 
+        "PriceListNum" : 1,
+        "FreeText":"PRB DIAPI 2",
+        "U_TIPO_RUC":"N", 
+        "U_TIPO_ID": "C",
+        "U_TIPO_CONTR": "N",
+
+        "BPAddresses": [{"AddressName": "PRINCIPAL",
+		"RowNum": 1,
+	    "AddressType": "bo_BillTo",
+            "Street": "KENNEDY NORTE MZ 808 Sl 2",
+            "City": "GUAYAQUIL"},
+
+            {"AddressName": "ENVIO",
+		"RowNum": 1,
+	    "AddressType": "bo_ShipTo",
+            "Street": "KENNEDY NORTE MZ 808 Sl 2",
+            "City": "GUAYAQUIL"}
+            
+            ]
+		
+
+ }
+ 
+ 
+ https://192.168.10.22:50000/b1s/v1/BusinessPartners?$select=CardCode, CardName&$filter=FederalTaxID eq '0916566797' and CardType eq 'C'
+ 
+ 
+ 
+ 10/may/2022
+	Definir todos los parametos de la informacion de necesitada por el API (ambos sistemas)
+	Definir el campo de Compania como parametro del api.
+ 
+ 18/may/2022
+	se esta 
+Mapeo DOBRA https://torresytorresec-my.sharepoint.com/:x:/g/personal/kcuesta_torresytorres_com/EY_MFQP0zF1JrSljdtH6nzMBECcI16yt559Q8rvVfp28LA?rtime=qX1iMcYx2kg
+ 
+Mapeo SAP https://torresytorresec-my.sharepoint.com/:x:/g/personal/kcuesta_torresytorres_com/ESWKdL6tU85Pl9nNjplojxsBFF1N_VvbKDhyEhiPWj1vHQ?rtime=oi5KFV842kg
+ 
+mapeo formato consolidado TyT
+https://docs.google.com/spreadsheets/d/1oARx81utc0wnrCblHRP5V6uxc2TaFtWrCmoK0rmWSxg/edit?usp=sharing
+
+mapeo de datos realizado por TyT definido como el definitivo para crear JSON.
+https://docs.google.com/spreadsheets/d/1oARx81utc0wnrCblHRP5V6uxc2TaFtWrCmoK0rmWSxg/edit#gid=2077488145
+
+pemdoemte de incluir en la programacion
+lectura de archivo ini
+lectura de la base de datos de parametros.
+por definir parametros de los nombres de los software
+parametros de los nombres de los sp invocdos
+crear metodo de homologacion.
+incluir llamdas a metodo de homologacion
+
+
+6/6/2022
+consultas a equipo tecnico TYT
+
+Existe algun SP, objeto, o funcion que realice el insert a la tabla de clientes o se debe manejar un insert directo?
+
+Se debe hacer un insert con el id (ultimo mas +) asi tambien el codigo ultimo +1. O se puede usar el mismo codigo
+
+En los comentarios del excel de definicion se indica : " Se debe reflejar en módulo de CRM. En SAP es el campo código (C000024)", esto quiere decir que este id q se genere en el momento de la adicion  debe replicarse de regreso al CRM y por lo que interpreto este mismo id debe ser almacenado con la misma secuencia en SAP??? es correcto, o es error de interpretacion de mi parte?
+
+como se manejara los campos boolean en DOBRA (0,1) vs ZOHO?? se usara el mismo id o hay q hacer homologacion
+
+la fila Servicios del Grupo, al parecer representa a varios campos en la tabla de clientes. confirmar.
+necesito explicacion de pestana de 
+representNDOSE
+
+fila 9 campo nombre en realidad debe tener otro id de identificacion
+
+campo q tienen el id y tambien el nombre, esto es realmente necesario???
+
+*******************
+DEFINIR CON WAGNER EL METODO DE GENERACION DE Logs
+********************
+

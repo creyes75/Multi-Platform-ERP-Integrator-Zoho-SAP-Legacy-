@@ -1,0 +1,279 @@
+USE [TyT]
+GO
+/****** Object:  StoredProcedure [dbo].[API_Integra_Clientes]    Script Date: 8/7/2022 10:07:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+/*
+Procedimiento:      API_Integra_Clientes
+Objetivo:		    realiza el registro de los datos de cleintes creados desde un origen externo, afectando a la tablas de clientes
+Fecha de creacion:  22 junio/2022 creyes    
+Modificacion:		
+Ejecucion:
+	  exec API_Integra_Clientes 'BUS'
+	  exec API_Integra_Clientes 'REG', @xmlDocument ='00%', '0916566797'
+Accion:
+	@Accion = 'REG' -- registra el clientes, aqui se busca si existe o es nuevo
+			= 'BUS' ---busqueda de un registro			
+*/
+
+ALTER procedure [dbo].[API_Integra_Clientes] (
+@Accion nvarchar(5),
+@xmlDocument nvarchar(max)=null,
+@RUC			nvarchar(50) = NULL)
+as
+begin
+
+if @Accion = 'REG'
+BEGIN
+
+	DECLARE @docHandle int;
+	--DECLARE @xmlDocument nvarchar(max); -- or xml type
+	--SET @xmlDocument = N'<?xml version="1.0" encoding="utf-16"?>
+	--<ClienteDOBRA xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	--	<RUC>0916566797</RUC>
+	--	<Nombre>Carlos</Nombre>  
+	--	<Clase>1</Clase>
+	--	<CompletarDocumentos>0</CompletarDocumentos>
+	--	<CoordinadorExp>jzambrano</CoordinadorExp> 
+	--</ClienteDOBRA>';
+	EXEC sp_xml_preparedocument @docHandle OUTPUT, @xmlDocument;
+	-- Use OPENXML to provide rowset consisting of customer data.
+
+
+	SELECT *
+	INTO #ClienteTmp
+	FROM OPENXML(@docHandle, N'/ClienteDOBRA',2)
+  
+	  WITH (  
+				RUC			varchar(250) 'RUC',
+				Nombre  varchar(250) 'Nombre',			
+				GrupoID		varchar(250) 'GrupoID', 					
+				TipoAduana	varchar(250) 'TipoAduana',
+				Anulado		varchar(250)	'Anulado',			
+				Clase		varchar(250) 'Clase',				
+				CompletarDocumentos varchar(250) 'CompletarDocumentos',
+				TipoIdentificacion	varchar(250) 'TipoIdentificacion',			
+			
+				NivelId		varchar(250)	'NivelId',			
+				CoordinadorVIPID		varchar(250) 'CoordinadorVIPID',	
+				CoordinadorExp			varchar(250) 'CoordinadorExp',		
+				AnalistaPPreviosID		varchar(250) 'AnalistaPPreviosID' ,			
+				ZonaId					varchar(250) 'ZonaId' ,
+				CiiuId					varchar(250) 'CiiuId',				
+				SectorId				varchar(250) 'SectorId',			
+				NaturalezaProductoId	varchar(250) 'NaturalezaProductoId',
+				TipoEmpresaId			varchar(250) 'TipoEmpresaId',				
+				TipoCaptacionId			varchar(250) 'TipoCaptacionId',
+				Telefono1				varchar(250) 'Telefono1',			
+				Telefono2				varchar(250) 'Telefono2',			
+				Correo					varchar(250) 'Correo',				
+				Web						varchar(250) 'Web',						
+				Direccion				varchar(250) 'Direccion',
+				Nota					varchar(max) 'Nota',				
+				Usuario					varchar(250) 'Usuario',			
+				Clave					varchar(250) 'Clave',				
+				AutorizadoEnvioElectronico varchar(250) 'AutorizadoEnvioElectronico', 
+				Calificacion			varchar(250) 'Calificacion',
+				FechaCalificacion		DATETIME 'FechaCalificacion',	
+				Cupo					DECIMAL(18,2) 'Cupo',				
+				CupoRestringido			varchar(250) 'CupoRestringido',
+				Fecha					DATETIME 'Fecha',						
+				EstadoClienteId			varchar(250) 'EstadoClienteId',
+				SrvImportacion			varchar(250) 'SrvImportacion',		
+				SrvExportacion			varchar(250) 'SrvExportacion',
+				SrvTransporte			varchar(250) 'SrvTransporte',		
+				SrvConsolidadora		varchar(250) 'SrvConsolidadora',			
+				SrvEstiba				varchar(250) 'SrvEstiba',
+
+				RepresentanteNombre		varchar(250) 'RepresentanteNombre',
+				RepresentanteCedula		varchar(250) 'RepresentanteCedula',
+				RepresentanteFnacimiento DATETIME    'RepresentanteFnacimiento',
+				RepresentanteTelefono2	varchar(250) 'RepresentanteTelefono2',
+				RepresentanteTelefono3	varchar(250) 'RepresentanteTelefono3',
+				Imp_Nombre				varchar(250) 'Imp_Nombre',
+				Imp_Asistente			varchar(250) 'Imp_Asistente',
+				Imp_Encargado			varchar(250) 'Imp_Encargado'
+
+
+
+				)
+	-- Use OPENXML to provide rowset consisting of order data.
+	--EXEC sp_xml_removedocument @docHandle
+	Declare @TipoId varchar(5);
+	--Declare @RUC varchar(20);
+	Declare @ClienteId varchar(10);
+
+	SELECT * 
+	INTO #ContactosTmp
+	FROM OPENXML(@docHandle, N'/ClienteDOBRA/Contactos/ClienteContactos',2)
+  
+	  WITH (  
+
+			ContactoNombre	varchar(250)	'ContactoNombre',
+			ContactoEmail	varchar(250)	'ContactoEmail',
+			TipoEmailID		varchar(250)	'TipoEmailID'
+  		)
+	-- Use OPENXML to provide rowset consisting of order data.
+	EXEC sp_xml_removedocument @docHandle
+
+
+	select @TipoId=TipoIdentificacion from #ClienteTmp 
+
+	--Listado DOBRA: 1 Ruc 2 Cédula, 3 Catastro, 4 Pasaporte, 5 Otros"
+		BEGIN TRY 
+			begin transaction T1
+			select @ClienteId = isnull(ID, '') from dbo.CLI_CLIENTES where
+			--case @TipoId
+			--when '2' then [Cédula] 
+			--when '1' then [Ruc] 
+			--else [Ruc] 
+			--end = 	@RUC
+			[Ruc] = @RUC;
+
+			if isnull(@ClienteId, '') = ''
+			begin
+				--busca el id del cliente
+				declare @ContadorID         VARCHAR(250);
+				SET     @ContadorID         = 'CLI_CLIENTES-ID-00'
+				EXECUTE (N'SIS_GetNextID2 ''' + @ContadorID + '''')
+				SELECT @ClienteId = Valor FROM SIS_CONTADORES WITH(NOLOCK) WHERE Código = @ContadorID
+				SET    @ClienteId = RIGHT('0000000000' + RTRIM(LTRIM(@ClienteId)),10);
+				PRINT @ClienteId;
+				--adiciona un nuevo cliente
+				print 'antes insert'
+				insert into dbo.CLI_CLIENTES (
+
+					[ID],				[Código],			[Nombre],				[GrupoID],				[TipoAduana],
+					[Anulado],			[Clase],			[completarDocumentos],	[Tip_Identificacion],	[Ruc],
+					[NivelID],			[CoordinadorVIPID],	[CoordinadorExp],		[analistaPPreviosID],	[ZonaID],
+					[CiiuID],			[SectorID],			[NaturalezaProductoID],	[TipoEmpresaID],		[tipoCaptacionID],
+					[Teléfono1],					[Email],				[WWW],					[Dirección],
+					[Nota],				[Usuario],			[clave],				[AutorizadoEnvioElectronico],[Calificación],
+					[FechaCalificación], [Cupo],			[CupoRestringido],		[Fecha],				[estadoClienteId],
+					[srvImportacion],	[srvExportacion],	[srvTransporte],		[srvConsolidadora],		[srvEstiba],
+
+					[Contacto],			[Cédula],			[nacimiento],			[Teléfono2],			[Teléfono3],
+					[Imp_Nombre],		[Imp_Asistente],	[Imp_Encargado]		
+					)
+				Select 
+					@ClienteId,			@ClienteId,			Nombre,				GrupoID, 					TipoAduana,
+					Anulado,			Clase,				CompletarDocumentos,TipoIdentificacion,			RUC,
+					NivelId,			[CoordinadorVIPID],	CoordinadorExp,		AnalistaPPreviosID,			ZonaId,
+					CiiuId,				SectorId,			NaturalezaProductoId,TipoEmpresaId,				TipoCaptacionId,
+					Telefono1,									Correo,				Web,						Direccion,
+					Nota,				Usuario,			Clave,				AutorizadoEnvioElectronico, Calificacion,
+					FechaCalificacion,	Cupo,				CupoRestringido,	Fecha,						EstadoClienteId,
+					SrvImportacion,		SrvExportacion,		SrvTransporte,		SrvConsolidadora,			SrvEstiba,
+
+					RepresentanteNombre, RepresentanteCedula, RepresentanteFnacimiento, RepresentanteTelefono2, RepresentanteTelefono3,
+					Imp_Nombre,			 Imp_Asistente, 	Imp_Encargado
+		
+				from #ClienteTmp
+				print 'desp insert'
+			end
+			ELSE
+			begin
+				print 'antes update'
+				UPDATE  C
+				SET C.[Nombre]				=T.Nombre,
+					C.[GrupoID]				=T.GrupoID,
+					C.[TipoAduana]			=T.TipoAduana,
+					C.[Anulado]				=T.Anulado,
+					C.[Clase]				=T.Clase,
+					C.[completarDocumentos]	=T.CompletarDocumentos,
+					C.[Tip_Identificacion]	=T.TipoIdentificacion,
+					C.[Ruc]					=T.RUC,
+					C.[NivelID]				=T.NivelId,
+					C.[CoordinadorVIPID]	=T.CoordinadorVIPID,
+					C.[CoordinadorExp]		=T.CoordinadorExp,
+					C.[analistaPPreviosID]	=T.AnalistaPPreviosID,
+					C.[ZonaID]				=T.ZonaId,
+					C.[CiiuID]				=T.CiiuId,
+					C.[SectorID]			=T.SectorId,
+					C.[NaturalezaProductoID]=T.NaturalezaProductoId,
+					C.[TipoEmpresaID]		=T.TipoEmpresaId,
+					C.[tipoCaptacionID]		=T.TipoCaptacionId,
+					C.[Teléfono1]			=T.Telefono1,
+					--C.[Teléfono2]			=T.Telefono2,
+					C.[Email]				=T.Correo,
+					C.[WWW]					=T.Web,
+					C.[Dirección]			=T.Direccion,			
+					C.[Nota]				=T.Nota,
+					C.[Usuario]				=T.Usuario,
+					C.[clave]				=T.Clave,
+					C.[AutorizadoEnvioElectronico]=T.AutorizadoEnvioElectronico,
+					C.[Calificación]		=T.Calificacion,
+					C.[FechaCalificación]	=T.FechaCalificacion,
+					C.[Cupo]				=T.Cupo,
+					C.[CupoRestringido]		=T.CupoRestringido,
+					C.[Fecha]				=T.Fecha,
+					C.[estadoClienteId]		=T.EstadoClienteId,
+					C.[srvImportacion]		=T.SrvImportacion,
+					C.[srvExportacion]		=T.SrvExportacion,
+					C.[srvTransporte]		=T.SrvTransporte,
+					C.[srvConsolidadora]	=T.SrvConsolidadora,
+					C.[srvEstiba]			=T.SrvEstiba,
+					C.[Contacto]			=T.RepresentanteNombre,
+					C.[Cédula]				=T.RepresentanteCedula,
+					C.[nacimiento]			=T.RepresentanteFnacimiento,			
+					C.[Teléfono2]			=T.RepresentanteTelefono2,			
+					C.[Teléfono3]			=T.RepresentanteTelefono3,
+					C.[Imp_Nombre]			=T.Imp_Nombre,		
+					C.[Imp_Asistente]		=T.Imp_Asistente,	
+					C.[Imp_Encargado]		=T.Imp_Encargado
+
+			
+					FROM CLI_CLIENTES C, #ClienteTmp T
+					WHERE C.[ID] = @ClienteId
+				print 'desp upd'
+			END --IF isnull(@ClienteId, '') = ''
+			--//registro de contactos del cliente
+			--QUE PASA CON LOS REGISTROS ANTERIORES SE BORRAN TODOS
+			IF (SELECT COUNT(*) FROM #ContactosTmp)  > 0 --SI SE RECIBEN DATOS DE CONTACTOS SE ELIMINAN LOS ANTERIORES.
+			BEGIN
+					DELETE FROM TyT.dbo.CLI_CLIENTES_CONTACTOS WHERE ClienteID = @ClienteId;
+
+					insert into  TyT.dbo.CLI_CLIENTES_CONTACTOS (ClienteID, Nombre, Email,TipoEmailID)
+						  select  @ClienteId, ContactoNombre, 	ContactoEmail, TipoEmailID from #ContactosTmp;
+			END;
+			drop table #ClienteTmp;
+			drop table #ContactosTmp;
+			IF @@TRANCOUNT > 0
+				commit transaction T1;
+		END TRY  
+		BEGIN CATCH  
+			IF @@TRANCOUNT > 0  
+				ROLLBACK TRANSACTION T1;  
+
+				--SELECT   
+				--    ERROR_NUMBER() AS ErrorNumber  
+				--    ,ERROR_SEVERITY() AS ErrorSeverity  
+				--    ,ERROR_STATE() AS ErrorState  
+				--    ,ERROR_PROCEDURE() AS ErrorProcedure  
+				--    ,ERROR_LINE() AS ErrorLine  
+				--    ,ERROR_MESSAGE() AS ErrorMessage; 
+				DECLARE @ErrorMessage NVARCHAR(4000);  
+				DECLARE @ErrorSeverity INT;  
+				DECLARE @ErrorState INT;  
+  
+				SELECT   
+					@ErrorMessage = ERROR_MESSAGE(),  
+					@ErrorSeverity = ERROR_SEVERITY(),  
+					@ErrorState = ERROR_STATE();  
+  
+				-- Use RAISERROR inside the CATCH block to return error  
+				-- information about the original error that caused  
+				-- execution to jump to the CATCH block.  
+				RAISERROR (@ErrorMessage, -- Message text.  
+						   @ErrorSeverity, -- Severity.  
+						   @ErrorState -- State.  
+						   );  
+
+		END CATCH;  
+
+END; --ACCION = 'REG'
+
+
+end

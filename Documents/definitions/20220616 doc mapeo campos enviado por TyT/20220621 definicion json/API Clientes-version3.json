@@ -1,0 +1,73 @@
+{
+		"EmpresaTyT": "YES",
+		"EmpresaCIA": "YES",
+		"EmpresaTolepu": "YES",
+		"EmpresaEstibas":  "YES",
+		"RUC": "0916566797",
+		"Cabecera": 
+		{
+			"Nombre" :"Carlos",
+			"GrupoID":"1",
+			"TipoAduana": "EXPO",
+			"Anulado":"0",
+			"Clase": "A",
+			"CompletarDocumentos": "1",
+			"Moneda": "USD",
+			"Correo":"creyes75@hotmail.com",
+			"CondicionPago": "146",
+			"ListaPrecios": 1,
+			"Propiedades1":"YES",
+			"Propiedades2": "NO",
+			"Propiedades3": "YES",
+			"Propiedades4":"NO",
+			"Comentario":"N/A",
+			"TipoProveedor": "BIEN",
+			"TipoRuc": "N",
+			"TipoContribuyente": "N",
+			"TipoSN" :"01"
+		},
+		"Empresarial":
+		{
+			"TipoId":"C",
+			"NivelId":"1",
+			"CoordinadorVIPID":"CREYES",
+			"CoordinadorExp":"jzambrano",
+			"AnalistaPPreviosID": "jzambrano",
+			"CiiuId":"1.1.2.3",
+			"ZonaId":"Norte",
+			"SectorId":"1",
+			"NaturalezaProductoId":"01",
+			"TipoEmpresaId": "Comercial",
+			"TipoCaptacionId":  "General",
+			"Telefono": "09999999",
+			"Telefono2": "09888888",
+			"Web":  "www.mycompany.com",
+			"Usuario": "creyes",
+			"Clave": "Psw1234",
+			"AutorizadoEnvioElectronico":"1",
+			"Calificacion":"20",
+			"FechaCalificacion":"2022-06-01",
+			"Cupo": 15000,
+			"CupoRestringido":"0",
+			"Fecha":"2022-06-01",
+			"EstadoClienteId":"5",
+			"SrvImportacion":"1",
+			"SrvExportacion":"0",
+			"SrvTransporte":"1",
+			"SrvConsolidadora": "1",
+			"SrvEstiba":"0"				
+		},
+		
+        
+        
+        "Direcciones": [
+		{
+			"AddressName": "PRINCIPAL",
+			"Street":"KENNEDY NORTE",
+			"City": "GUAYAQUIL",
+			"CityId":"04",
+			"Country":"EC"
+		}
+		]
+    
+    }

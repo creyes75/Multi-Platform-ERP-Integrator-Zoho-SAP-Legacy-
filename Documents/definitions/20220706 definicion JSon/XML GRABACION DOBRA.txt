@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ClienteDOBRA xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <RUC>0916566797</RUC>
+  <Nombre>carlos reyes Viamatica 13jul2022 intento 1</Nombre>
+  <GrupoID>1</GrupoID>
+  <TipoAduana>1</TipoAduana>
+  <Anulado>0</Anulado>
+  <Clase>A</Clase>
+  <CompletarDocumentos>0</CompletarDocumentos>
+  <TipoIdentificacion>C</TipoIdentificacion>
+  <NivelId>1</NivelId>
+  <CoordinadorVIPID>CREYES</CoordinadorVIPID>
+  <CoordinadorExp>jzambrano</CoordinadorExp>
+  <AnalistaPPreviosID>jzambrano</AnalistaPPreviosID>
+  <ZonaId>Norte</ZonaId>
+  <CiiuId>1.1.2.3</CiiuId>
+  <SectorId>1</SectorId>
+  <NaturalezaProductoId>01</NaturalezaProductoId>
+  <TipoEmpresaId>Comercial</TipoEmpresaId>
+  <TipoCaptacionId>General</TipoCaptacionId>
+  <Telefono1>09999999</Telefono1>
+  <Telefono2>09888888</Telefono2>
+  <Correo>cr_Viamatica@hotmail.com</Correo>
+  <Web>www.mycompany.com</Web>
+  <Direccion>KENNEDY NORTEGUAYAQUIL</Direccion>
+  <Nota>N/A</Nota>
+  <Usuario>creyes</Usuario>
+  <Clave>Psw1234</Clave>
+  <AutorizadoEnvioElectronico>0</AutorizadoEnvioElectronico>
+  <Calificacion>2</Calificacion>
+  <FechaCalificacion>2022-06-01T00:00:00</FechaCalificacion>
+  <Cupo>15000</Cupo>
+  <CupoRestringido>0</CupoRestringido>
+  <Fecha>2022-06-01T00:00:00</Fecha>
+  <EstadoClienteId>5</EstadoClienteId>
+  <SrvImportacion>0</SrvImportacion>
+  <SrvExportacion>0</SrvExportacion>
+  <SrvTransporte>0</SrvTransporte>
+  <SrvConsolidadora>0</SrvConsolidadora>
+  <SrvEstiba>0</SrvEstiba>
+  <categoria>A</categoria>
+  <paqueteComercialId>01</paqueteComercialId>
+  <juridico>0</juridico>
+  <decisionComoGrupo>0</decisionComoGrupo>
+  <coordComercial>creyes</coordComercial>
+  <externo>no</externo>
+  <asesorComercial>creyes1</asesorComercial>
+  <oficialCuenta>creyes</oficialCuenta>
+  <promesaCompra>2000</promesaCompra>
+  <tipoRegimenExterior>Especial001</tipoRegimenExterior>
+  <paisResidenciaRegEspecial>EC</paisResidenciaRegEspecial>
+  <paisResidenciaParaisoFiscal>EC</paisResidenciaParaisoFiscal>
+  <tipoIngresoExterior>1</tipoIngresoExterior>
+  <ingresoExterioIR>SI</ingresoExterioIR>
+  <RepresentanteNombre>yo mismo</RepresentanteNombre>
+  <RepresentanteCedula>0916566797</RepresentanteCedula>
+  <RepresentanteFnacimiento>1975-11-30</RepresentanteFnacimiento>
+  <RepresentanteTelefono2>096666666</RepresentanteTelefono2>
+  <RepresentanteTelefono3 />
+  <Imp_Nombre>Yo tambien</Imp_Nombre>
+  <Imp_Asistente>igualito</Imp_Asistente>
+  <Imp_Encargado>otra vez yo</Imp_Encargado>
+  <Contactos>
+    <ClienteContactos>
+      <ContactoNombre>creyes666</ContactoNombre>
+      <ContactoEmail>MYmail@correo.com</ContactoEmail>
+      <TipoEmailID>0000002254</TipoEmailID>
+    </ClienteContactos>
+  </Contactos>
+</ClienteDOBRA>

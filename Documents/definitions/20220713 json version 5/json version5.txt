@@ -1,0 +1,106 @@
+{
+    "EmpresaTyT": "NO",
+    "EmpresaCIA": "YES",
+    "EmpresaTolepu": "NO",
+    "EmpresaEstibas": "NO",
+    "RUC": "0916566797",
+    "Cabecera": {
+        "Nombre": "carlos reyes Viamatica 13jul2022 intento 1",
+        "GrupoID": "1",
+        "TipoAduana": "1",
+        "Anulado": "0",
+        "Clase": "A",
+        "CompletarDocumentos": "1",
+        "Moneda": "USD",
+        "Correo": "cr_Viamatica@hotmail.com",
+        "CondicionPago": "133",
+        "ListaPrecios": 1,
+        "Propiedades1": "YES",
+        "Propiedades2": "NO",
+        "Propiedades3": "YES",
+        "Propiedades4": "NO",
+        "Comentario": "N/A",
+        "TipoProveedor": "BIEN",
+        "TipoRuc": "N",
+        "TipoContribuyente": "N",
+        "TipoSN": "01",
+        "categoria": "A",
+        "paqueteComercialId": "01", 
+        "juridico" :"0",
+        "decisionComoGrupo" :"1"
+    },
+    "Empresarial": {
+        "TipoId": "C",
+        "NivelId": "1",
+        "CoordinadorVIPID": "CREYES",
+        "CoordinadorExp": "jzambrano",
+        "AnalistaPPreviosID": "jzambrano",
+        "CiiuId": "1.1.2.3",
+        "ZonaId": "Norte",
+        "SectorId": "1",
+        "NaturalezaProductoId": "01",
+        "TipoEmpresaId": "Comercial",
+        "TipoCaptacionId": "General",
+        "Telefono": "09999999",
+        "Telefono2": "09888888",
+        "Web": "www.mycompany.com",
+        "Usuario": "creyes",
+        "Clave": "Psw1234",
+        "AutorizadoEnvioElectronico": "1",
+        "Calificacion": "2",
+        "FechaCalificacion": "2022-06-01",
+        "Cupo": 15000,
+        "CupoRestringido": "0",
+        "Fecha": "2022-06-01",
+        "EstadoClienteId": "5",
+        "SrvImportacion": "1",
+        "SrvExportacion": "0",
+        "SrvTransporte": "1",
+        "SrvConsolidadora": "1",
+        "SrvEstiba": "0",
+
+        "coordComercial":"creyes",
+        "externo": "no",
+        "asesorComercial":"creyes1",
+        "oficialCuenta": "creyes",
+        "promesaCompra": "2000",
+        "tipoRegimenExterior" :"Especial001",
+        "paisResidenciaRegEspecial": "EC",
+        "paisResidenciaParaisoFiscal": "EC",
+        "tipoIngresoExterior": "1",
+        "ingresoExterioIR": "SI"
+    },
+    "Direcciones": [
+        {
+            "AddressName": "PRINCIPAL",
+            "Street": "KENNEDY NORTE",
+            "City": "GUAYAQUIL",
+            "CityId": "04",
+            "Country": "EC"
+        },
+        {
+            "AddressName": "ENVIO",
+            "Street": "KENNEDY NORTE",
+            "City": "GUAYAQUIL",
+            "CityId": "04",
+            "Country": "EC"
+        }
+    ],
+    "Representante": {
+        "RepresentanteNombre": "yo mismo",
+        "RepresentanteCedula": "0916566797",
+        "RepresentanteFnacimiento": "1975-11-30",
+        "RepresentanteTelefono2": "096666666",
+        "RepresentanteTelefono3": "",
+        "Imp_Nombre": "Yo tambien",
+        "Imp_Asistente": "igualito",
+        "Imp_Encargado": "otra vez yo"
+    },
+    "Contactos": [
+        {
+            "ContactoNombre": "creyes666",
+            "ContactoEmail": "MYmail@correo.com",
+            "TipoEmailID": "0000002254"
+        }
+    ]
+}
